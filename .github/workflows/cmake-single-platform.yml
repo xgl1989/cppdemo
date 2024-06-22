@@ -28,6 +28,7 @@ jobs:
   
     - name: check env
       run: |
+        echo $PATH
         cmake --version
         gcc --version
         echo $JAVA_HOME
