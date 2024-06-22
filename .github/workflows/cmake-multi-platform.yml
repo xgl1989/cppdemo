@@ -63,6 +63,20 @@ jobs:
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+    - name: Upload DLL Artifacts
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with: 
+        name: cppdemo
+        path: ${{ github.workspace }}/build/cppdemo.dll
+    
+    - name: Upload SO Artifacts
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v2
+      with: 
+        name: cppdemo
+        path: ${{ github.workspace }}/build/libcppdemo.so
+
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
