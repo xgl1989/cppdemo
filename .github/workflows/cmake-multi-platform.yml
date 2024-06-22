@@ -68,14 +68,14 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: cppdemo-windows
-        path: ${{ github.workspace }}/build/cppdemo.dll
+        path: ${{ github.workspace }}/build/Release/cppdemo.dll
     
     - name: Upload SO Artifacts
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v2
       with: 
         name: cppdemo-linux
-        path: ${{ github.workspace }}/build/Release/libcppdemo.so
+        path: ${{ github.workspace }}/build/libcppdemo.so
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
