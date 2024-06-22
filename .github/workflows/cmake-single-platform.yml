@@ -30,7 +30,9 @@ jobs:
       run: |
         cmake --version
         gcc --version
+        echo $JAVA_HOME
         java --version
+        mvn --version
 
         
     - name: Configure CMake
