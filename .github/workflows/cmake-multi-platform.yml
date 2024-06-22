@@ -67,14 +67,14 @@ jobs:
 
     - name: Upload DLL Artifacts
       if: matrix.os == 'windows-latest'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with: 
         name: cppdemo-windows
         path: ${{ github.workspace }}/build/Release/cppdemo.dll
     
     - name: Upload SO Artifacts
       if: matrix.os == 'ubuntu-latest'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with: 
         name: cppdemo-linux
         path: ${{ github.workspace }}/build/libcppdemo.so
