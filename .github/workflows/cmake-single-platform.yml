@@ -31,7 +31,7 @@ jobs:
         cmake --version
         gcc --version
         echo $JAVA_HOME
-        java --version
+        java -version
         mvn --version
 
         
