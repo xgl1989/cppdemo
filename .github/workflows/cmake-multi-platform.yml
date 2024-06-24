@@ -67,6 +67,16 @@ jobs:
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+    - name: print var
+      shell: bash
+      run: |
+        echo ${{ steps.strings.outputs.build-output-dir }}
+        echo "${{ steps.strings.outputs.build-output-dir }}"
+        echo ${{ steps.strings.outputs.build-output-dir }}/myproject/build
+        echo "${{ steps.strings.outputs.build-output-dir }}/myproject/build"
+        echo ${{ github.workspace }}/build/Release/cppdemo.dll
+        echo "${{ github.workspace }}/build/Release/cppdemo.dll"
+        
     - name: Upload DLL Artifacts
       if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v4
