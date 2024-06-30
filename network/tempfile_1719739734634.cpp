@@ -32,6 +32,23 @@ void sendMessageWithProtocol(int socket_fd, const std::string& message) {
 
 int main() {
     // 连接到服务器的代码省略，与之前示例相同
+    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0) {
+        perror("Error opening socket");
+        return -1;
+    }
+
+    struct sockaddr_in server_addr;
+    memset(&server_addr, '0', sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(12345); // 假定服务器端口为12345
+    inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr); // 假定服务器IP为本地环回地址
+
+    if (connect(sockfd, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
+        perror("Error connecting to server");
+        close(sockfd);
+        return -1;
+    }
 
     std::string message = "Hello, Server!";
     sendMessageWithProtocol(sockfd, message);
