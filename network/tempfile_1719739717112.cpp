@@ -105,7 +105,7 @@ int main() {
             exit(EXIT_FAILURE);
         }
 
-        std::thread t([](int new_socket)) {
+        std::thread t([](int new_socket) {
             while (true) {
                 if (receiveAndProcessWithProtocol(new_socket)) {
                     close(new_socket);
